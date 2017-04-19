@@ -5,7 +5,7 @@ package org.vaadin.hr.data;
  * @author miki
  * @since 2017-04-19
  */
-public class Person {
+public final class Person {
 
     private String firstName;
     private String lastName;
@@ -13,6 +13,7 @@ public class Person {
     private int age;
 
     public Person() {
+        // this constructor is here if you prefer using setters instead of constructor parameters
     }
 
     public Person(String firstName, String lastName, Country country, int age) {

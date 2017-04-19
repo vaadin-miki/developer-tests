@@ -1,12 +1,15 @@
 package org.vaadin.hr;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.vaadin.hr.data.Country;
 import org.vaadin.hr.data.Person;
-import org.vaadin.hr.provider.FileBasedProvider;
+import org.vaadin.hr.provider.PersonDataProvider;
+import org.vaadin.hr.provider.file.FileBasedProvider;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -15,7 +18,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Contains tests that must pass.
+ * Contains tests that must pass.<br/>
+ * Do not modify this file.
  * @author miki
  * @since 2017-04-19
  */
@@ -23,20 +27,29 @@ public class FileBasedProviderTest {
 
     private static FileBasedProvider PROVIDER;
 
+    private PersonDataProvider provider;
+
     @BeforeClass
-    public static void setUp() {
+    public static void setUpClass() throws IOException {
         File file = new File(FileBasedProviderTest.class.getClassLoader().getResource("people.csv").getFile());
-        PROVIDER = new FileBasedProvider(file);
+        PROVIDER = new FileBasedProvider();
+        PROVIDER.read(file);
+    }
+
+    @Before
+    public void setUp() {
+        // this is just to make sure the interface is not changed
+        this.provider = PROVIDER;
     }
 
     @Test
     public void testReadAll() {
-        assertEquals("incorrect number of entries read from the file", 500, PROVIDER.findAll().size());
+        assertEquals("incorrect number of entries read from the file", 500, provider.findAll().size());
     }
 
     @Test
     public void testFindByFirstName() {
-        Collection<Person> entries = PROVIDER.search("Russ", null, null, 0);
+        Collection<Person> entries = provider.search("Russ", null, null, 0);
         assertEquals(10, entries.size());
         List<Person> results = Arrays.asList(
             new Person("Russ", "Wyatt", Country.SLOVENIA, 24),
@@ -55,13 +68,13 @@ public class FileBasedProviderTest {
 
     @Test
     public void testFindNothingByFirstNameAndEuAndAge() {
-        Collection<Person> entries = PROVIDER.search("Russ", null, true, 50);
+        Collection<Person> entries = provider.search("Russ", null, true, 50);
         assertTrue(entries.isEmpty());
     }
 
     @Test
     public void testFindByFirstNameAndEuAndAge() {
-        Collection<Person> entries = PROVIDER.search("Russ", null, true, 35);
+        Collection<Person> entries = provider.search("Russ", null, true, 35);
         assertEquals(2, entries.size());
         List<Person> results = Arrays.asList(
             new Person("Russ", "York", Country.CROATIA, 37),

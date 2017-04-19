@@ -1,7 +1,5 @@
 package org.vaadin.hr.data;
 
-import java.util.Random;
-
 /**
  * Enum for various countries.
  * @author miki
@@ -28,6 +26,14 @@ public enum Country {
 
     Country(boolean eu) {
         this.eu = eu;
+    }
+
+    /**
+     * Checks if the country belongs to the EU.
+     * @return Whether or not the country is a part of the EU.
+     */
+    public boolean isEu() {
+        return this.eu;
     }
 
 }
