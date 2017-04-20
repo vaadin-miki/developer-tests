@@ -3,6 +3,7 @@ package org.vaadin.hr;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.JUnitCore;
 import org.vaadin.hr.data.Country;
 import org.vaadin.hr.data.Person;
 import org.vaadin.hr.provider.PersonDataProvider;
@@ -81,6 +82,17 @@ public class FileBasedProviderTest {
             new Person("Russ", "Walton", Country.DENMARK, 42)
         );
         assertTrue(entries.containsAll(results));
+    }
+
+    /**
+     * Runs the tests as a java app.
+     * This method should be used if your IDE does not have support for Maven or JUnit.
+     *
+     * @param args
+     *          Command line arguments. Ignored.
+     */
+    public static final void main(String[] args) {
+        JUnitCore.main("org.vaadin.hr.FileBasedProviderTest");
     }
 
 }
