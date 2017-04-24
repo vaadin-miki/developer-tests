@@ -9,7 +9,11 @@ import java.util.Set;
 
 /**
  * Generates test data.
+ *
  * No need to run this.
+ *
+ * Do not modify this file.
+ *
  * @author miki
  * @since 2017-04-19
  * @deprecated Do not use this file.
@@ -37,10 +41,14 @@ public class DataGenerator {
             for(Integer lastNameIndex: randomInts(10, LAST_NAME.length, random))
                 System.out.println(String.format("%s,%s,%s,%s", firstName, LAST_NAME[lastNameIndex], getRandom(random), random.nextInt(40)+18));
         }
+        // you may ask yourself a question: why is this dumping things to System.out?
+        // the answer is twofold: first, you should not need to run this file
+        // second, the location of the file may change depending on how you import the project
+        // so, to be on the safe side, if you ever run this file, copy the output and save it as [people.csv]
     }
 
     private static Collection<Integer> randomInts(int count, int range, Random random) {
-        Set<Integer> integers = new HashSet<Integer>();
+        Set<Integer> integers = new HashSet<>();
         while(integers.size() < count)
             integers.add(random.nextInt(range));
         return integers;

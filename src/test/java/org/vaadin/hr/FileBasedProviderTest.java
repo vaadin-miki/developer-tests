@@ -32,7 +32,22 @@ public class FileBasedProviderTest {
 
     @BeforeClass
     public static void setUpClass() throws IOException {
-        File file = new File(FileBasedProviderTest.class.getClassLoader().getResource("people.csv").getFile());
+        File file;
+        try {
+            file = new File(FileBasedProviderTest.class.getClassLoader().getResource("people.csv").getFile());
+        }
+        catch(NullPointerException ex) {
+            // if you imported this project as a Java project, the line above fill fail
+            // and you will end up in this place
+            // please provide an absolute path to [people.csv] so that everything works fine
+
+            // and of course comment out the exception in the line below:
+            throw new IllegalArgumentException("cannot load the resource file (is project imported as Maven?) please supply direct path to the file");
+
+            // and uncomment the following line:
+            // file = new File("replace/this/with/a/direct/path/to/src/main/resources/people.csv");
+        }
+
         PROVIDER = new FileBasedProvider();
         PROVIDER.read(file);
     }
@@ -75,13 +90,21 @@ public class FileBasedProviderTest {
 
     @Test
     public void testFindByFirstNameAndEuAndAge() {
-        Collection<Person> entries = provider.search("Russ", null, true, 35);
+        Collection<Person> entries = provider.search("Russ", null, true, 37);
         assertEquals(2, entries.size());
         List<Person> results = Arrays.asList(
             new Person("Russ", "York", Country.CROATIA, 37),
             new Person("Russ", "Walton", Country.DENMARK, 42)
         );
         assertTrue(entries.containsAll(results));
+    }
+
+    @Test
+    public void testFindBySurnameAndAge() {
+        Collection<Person> entries = provider.search(null, "Scott", null, 21);
+        assertEquals(1, entries.size());
+        Person result = new Person("Winnifred","Scott", Country.MALTA,21);
+        assertEquals(result, entries.iterator().next());
     }
 
     /**

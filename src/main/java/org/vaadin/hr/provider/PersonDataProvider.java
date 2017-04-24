@@ -5,17 +5,20 @@ import org.vaadin.hr.data.Person;
 import java.util.Collection;
 
 /**
- * Interface for objects that provide information about people.<br/>
+ * Interface for objects that provide information about people.
+ *
  * Do not modify this file.
+ *
  * @author miki
  * @since 2017-04-19
  */
 public interface PersonDataProvider {
+
     /**
-     * Returns all data read from the file.
+     * Returns all data found in this provider.
      *
      * @return
-     * A collection of all people data.
+     *              A collection of all people data.
      */
     Collection<Person> findAll();
 

@@ -2,6 +2,7 @@ package org.vaadin.hr.data;
 
 /**
  * POJO for a person.
+ *
  * @author miki
  * @since 2017-04-19
  */
@@ -53,5 +54,10 @@ public final class Person {
 
     public void setAge(byte age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s (%d / %s)", this.getFirstName(), this.getLastName(), this.getAge(), this.getCountry().toString());
     }
 }

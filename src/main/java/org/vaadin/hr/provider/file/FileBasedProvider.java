@@ -10,6 +10,9 @@ import java.util.Collection;
 
 /**
  * Provides data based on a file.
+ *
+ * This file contains tasks to implement.
+ *
  * @author miki
  * @since 2017-04-19
  * @see PersonDataProvider
@@ -30,7 +33,7 @@ public class FileBasedProvider implements PersonDataProvider {
      * @see Country an enum with defined countries
      */
     public void read(File file) throws IOException {
-        // todo task-1: read contents of a given file
+        // todo task-1: read contents of the given file
         throw new UnsupportedOperationException("not implemented");
     }
 
