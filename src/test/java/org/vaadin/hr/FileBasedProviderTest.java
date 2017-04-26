@@ -101,9 +101,9 @@ public class FileBasedProviderTest {
 
     @Test
     public void testFindBySurnameAndAge() {
-        Collection<Person> entries = provider.search(null, "Scott", null, 21);
+        Collection<Person> entries = provider.search(null, "Scott", null, 56);
         assertEquals(1, entries.size());
-        Person result = new Person("Winnifred","Scott", Country.MALTA,21);
+        Person result = new Person("Tanya","Scott",Country.ARMENIA,56);
         assertEquals(result, entries.iterator().next());
     }
 
