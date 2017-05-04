@@ -20,7 +20,9 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Contains tests that must pass.<br/>
+ *
  * Do not modify this file.
+ *
  * @author miki
  * @since 2017-04-19
  */
@@ -37,12 +39,12 @@ public class FileBasedProviderTest {
             file = new File(FileBasedProviderTest.class.getClassLoader().getResource("people.csv").getFile());
         }
         catch(NullPointerException ex) {
-            // if you imported this project as a Java project, the line above fill fail
+            // if you imported this project as a Java project (not maven), the line above will fail
             // and you will end up in this place
             // please provide an absolute path to [people.csv] so that everything works fine
 
             // and of course comment out the exception in the line below:
-            throw new IllegalArgumentException("cannot load the resource file (is project imported as Maven?) please supply direct path to the file");
+            throw new IllegalArgumentException("cannot load the resource file (is project imported as Maven?) - please supply direct path to the file");
 
             // and uncomment the following line:
             // file = new File("replace/this/with/a/direct/path/to/src/main/resources/people.csv");
@@ -85,13 +87,13 @@ public class FileBasedProviderTest {
     @Test
     public void testFindNothingByFirstNameAndEuAndAge() {
         Collection<Person> entries = provider.search("Russ", null, true, 50);
-        assertTrue(entries.isEmpty());
+        assertTrue("no records should match the search criteria", entries.isEmpty());
     }
 
     @Test
     public void testFindByFirstNameAndEuAndAge() {
         Collection<Person> entries = provider.search("Russ", null, true, 37);
-        assertEquals(2, entries.size());
+        assertEquals("two matching records are expected", 2, entries.size());
         List<Person> results = Arrays.asList(
             new Person("Russ", "York", Country.CROATIA, 37),
             new Person("Russ", "Walton", Country.DENMARK, 42)
@@ -102,7 +104,7 @@ public class FileBasedProviderTest {
     @Test
     public void testFindBySurnameAndAge() {
         Collection<Person> entries = provider.search(null, "Scott", null, 56);
-        assertEquals(1, entries.size());
+        assertEquals("exactly one matching record should be found",1, entries.size());
         Person result = new Person("Tanya","Scott",Country.ARMENIA,56);
         assertEquals(result, entries.iterator().next());
     }
