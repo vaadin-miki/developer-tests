@@ -1,8 +1,8 @@
-package org.vaadin.hr.provider.file;
+package org.vaadin.hr.datareader.provider.file;
 
-import org.vaadin.hr.data.Person;
-import org.vaadin.hr.data.Country;
-import org.vaadin.hr.provider.PersonDataProvider;
+import org.vaadin.hr.datareader.data.Person;
+import org.vaadin.hr.datareader.data.Country;
+import org.vaadin.hr.datareader.provider.PersonDataProvider;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class FileBasedProvider implements PersonDataProvider {
     }
 
     @Override
-    public Collection<Person> search(String firstName, String lastName, Boolean eu, int age) {
+    public Collection<Person> search(String firstName, String lastName, Boolean eu, int minimumAge) {
         // todo task-3: implement the searching as described in this method's javadoc
         throw new UnsupportedOperationException("not supported");
     }

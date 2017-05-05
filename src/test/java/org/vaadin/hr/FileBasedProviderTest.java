@@ -4,10 +4,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
-import org.vaadin.hr.data.Country;
-import org.vaadin.hr.data.Person;
-import org.vaadin.hr.provider.PersonDataProvider;
-import org.vaadin.hr.provider.file.FileBasedProvider;
+import org.vaadin.hr.datareader.data.Country;
+import org.vaadin.hr.datareader.data.Person;
+import org.vaadin.hr.datareader.provider.PersonDataProvider;
+import org.vaadin.hr.datareader.provider.file.FileBasedProvider;
 
 import java.io.File;
 import java.io.IOException;

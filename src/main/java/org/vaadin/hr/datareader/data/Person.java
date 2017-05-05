@@ -1,4 +1,4 @@
-package org.vaadin.hr.data;
+package org.vaadin.hr.datareader.data;
 
 /**
  * POJO for a person.

@@ -1,4 +1,4 @@
-package org.vaadin.hr.data;
+package org.vaadin.hr.datareader.data;
 
 /**
  * Enum for various countries.

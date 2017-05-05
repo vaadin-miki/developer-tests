@@ -1,6 +1,6 @@
 package org.vaadin.hr.generator;
 
-import org.vaadin.hr.data.Country;
+import org.vaadin.hr.datareader.data.Country;
 
 import java.util.Collection;
 import java.util.HashSet;

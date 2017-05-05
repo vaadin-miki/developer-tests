@@ -1,6 +1,6 @@
-package org.vaadin.hr.provider;
+package org.vaadin.hr.datareader.provider;
 
-import org.vaadin.hr.data.Person;
+import org.vaadin.hr.datareader.data.Person;
 
 import java.util.Collection;
 
@@ -31,10 +31,10 @@ public interface PersonDataProvider {
      *              If not {@code null}, only people with given last name.
      * @param eu
      *              If not {@code null}, only people with country either from EU ({@code true}) or not ({@code false}).
-     * @param age
-     *              If a positive number, only people with that age or older.
+     * @param minimumAge
+     *              If a positive number, only people <strong>with that age or older</strong>.
      * @return
      *              A collection of people data matching the criteria.
      */
-    Collection<Person> search(String firstName, String lastName, Boolean eu, int age);
+    Collection<Person> search(String firstName, String lastName, Boolean eu, int minimumAge);
 }
