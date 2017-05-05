@@ -13,7 +13,8 @@ public class PascalNumberCalculator {
     public long getNumber(int row, int offset) {
         if(offset <= 0 || offset == row)
             return 1;
-        else return summator.aggregate(getNumber(row - 1, offset - 1), getNumber(row - 1, offset));
+        else
+            return summator.aggregate(getNumber(row - 1, offset - 1), getNumber(row - 1, offset));
     }
 
     public long[] getRow(int index) {
