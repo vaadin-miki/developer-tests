@@ -14,3 +14,7 @@ After checking out your branch, open `README.md` and follow the instructions.
 You **are allowed** to search the web for any API or code examples related to your tasks. You are **not allowed** to search for solutions ;) 
 
 Whenever you are unclear about what exactly is expected, **ask immediately**.
+
+#### Small print
+
+Using branches for storing separate projects is not how git should be used. I know.
