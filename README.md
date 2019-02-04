@@ -4,6 +4,7 @@ This repository contains a few tasks to implement during a developer interview t
 
 This is the `master` branch and it contains no code. Please switch to some other branch:
 * `task-data` for a general programming task
+* `task-calculator` for another general programming task
 * `task-optimise` for a code optimisation task
 * `task-css` for a set of simple CSS tasks
 
