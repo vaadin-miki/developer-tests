@@ -2,28 +2,22 @@
 
 This repository contains a few tasks to implement during a developer interview task.
 
-This branch contains a general programming task.
+This project contains the following modules:
+* `task-data` - a general programming task with fixed requirements
+* `task-calculator` - a general programming task with changing requirements 
+* `task-optimise` - a code optimisation task
+* `task-css` - a set of simple CSS tasks
 
-# TL;DR
+Each module is independent and should be run separately.
 
-1. Clone this repository.
-1. Run the tests (`mvn test` or run `FileBasedProviderTest`).
-1. Implement missing code so that all the tests pass.
-1. ???
-1. PROFIT.
+To get started, please open `README.md` in a module and follow the instructions.
 
-# More details
+# General guidelines
 
 You **are allowed** to search the web for any API or code examples related to your tasks. You are **not allowed** to search for solutions ;) 
 
 Whenever you are unclear about what exactly is expected, **ask immediately**.
 
-## General programming task
+You are required to share your screen. In addition to that, please **explain the way you solve the tasks**.
 
-Look at `FileBasedProvider.read()` and start from there. Your task is to read contents of a file with CSV values (one entry per line).
-
-Once the contents of the file are read, proceed to `FileBasedProvider.findAll()` and return all the data found in the file as a collection.
-
-After that, look at `FileBasedProvider.search(...)` and implement it according to the documentation.
-
-You have approximately 30 minutes, although this is not a hard limit. Once all the tests pass, congratulations!
+Good luck!  
