@@ -2,25 +2,22 @@
 
 This repository contains a few tasks to implement during a developer interview task.
 
-This branch contains a few CSS tasks.
+This project contains the following modules:
+* `task-data` - a general programming task with fixed requirements
+* `task-calculator` - a general programming task with changing requirements 
+* `task-optimise` - a code optimisation task
+* `task-css` - a set of simple CSS tasks
 
-# TL;DR
+Each module is independent and should be run separately.
 
-1. Clone this repository.
-1. Open `basic-test.html` and add needed CSS to `styles.css`. 
-1. ???
-1. PROFIT.
+To get started, please open `README.md` in a module and follow the instructions.
 
-# More details
+# General guidelines
 
 You **are allowed** to search the web for any API or code examples related to your tasks. You are **not allowed** to search for solutions ;) 
 
 Whenever you are unclear about what exactly is expected, **ask immediately**.
 
-## CSS tasks
+You are required to share your screen. In addition to that, please **explain the way you solve the tasks**.
 
-Open `src/html/basic-test.html`. It describes three tasks to be accomplished by adding proper CSS rules to `src/html/styles.css`.
-
-There is no *reference screenshot* associated with these tasks - anything that matches the specification will work.
-
-You have approximately 45 minutes, although this is not a hard limit.
+Good luck!  
