@@ -1,8 +1,6 @@
 # Overview
 
-This repository contains a few tasks to implement during a developer interview task.
-
-This branch contains a few CSS tasks.
+This module contains a few CSS tasks.
 
 # TL;DR
 

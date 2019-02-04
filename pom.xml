@@ -5,9 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.vaadin.hr</groupId>
-    <artifactId>sample-data</artifactId>
+    <artifactId>developer-tests</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <name>Developer Tests</name>
+    <description>This module contains tasks (one per submodule) to be solved during an interview for a developer position.</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -15,7 +17,6 @@
     </properties>
 
     <modules>
-
         <module>task-data</module>
         <module>task-calculator</module>
         <module>task-optimise</module>
@@ -27,6 +28,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

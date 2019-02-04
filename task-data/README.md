@@ -1,8 +1,6 @@
 # Overview
 
-This repository contains a few tasks to implement during a developer interview task.
-
-This branch contains a general programming task.
+This module contains a general programming task.
 
 # TL;DR
 

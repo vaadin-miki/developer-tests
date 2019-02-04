@@ -1,13 +1,11 @@
 # Overview
 
-This repository contains a few tasks to implement during a developer interview task.
-
-This branch contains code optimisation task.
+This module contains a code optimisation task.
 
 # TL;DR
 
-1. Clone this repository and switch to `task-optimise`.
-1. Run the tests (`mvn test` or run `OptimisationTest`).
+1. Clone this repository.
+1. Run the tests (`mvn test` or run `OptimisationTest`) of this module.
 1. Implement missing code so that all the tests pass.
 1. ???
 1. PROFIT.

@@ -3,12 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>sample-data</artifactId>
+        <artifactId>developer-tests</artifactId>
         <groupId>org.vaadin.hr</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>task-css</artifactId>
+    <name>CSS Tasks</name>
+    <description>This module contains no executable code - instead it has a few CSS tasks.</description>
 
 </project>

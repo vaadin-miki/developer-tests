@@ -8,7 +8,7 @@ This project contains the following modules:
 * `task-optimise` - a code optimisation task
 * `task-css` - a set of simple CSS tasks
 
-Each module is independent and should be run separately.
+Each module is independent and should be run and compiled separately.
 
 To get started, please open `README.md` in a module and follow the instructions.
 
