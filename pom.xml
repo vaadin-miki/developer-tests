@@ -21,6 +21,7 @@
         <module>task-calculator</module>
         <module>task-optimise</module>
         <module>task-css</module>
+        <module>task-calendar</module>
     </modules>
 
     <build>

@@ -4,6 +4,7 @@ This repository contains a few tasks to implement during a developer interview t
 
 This project contains the following modules:
 * `task-data` - a general programming task with fixed requirements
+* `task-calendar` - another general programming task with fixed requirements
 * `task-calculator` - a general programming task with changing requirements 
 * `task-optimise` - a code optimisation task
 * `task-css` - a set of simple CSS tasks
@@ -20,4 +21,4 @@ Whenever you are unclear about what exactly is expected, **ask immediately**.
 
 You are required to share your screen. In addition to that, please **explain the way you solve the tasks**.
 
-Good luck!  
+Good luck!
