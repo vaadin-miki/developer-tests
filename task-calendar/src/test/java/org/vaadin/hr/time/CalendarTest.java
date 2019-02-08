@@ -73,7 +73,7 @@ public class CalendarTest {
         // check whether the list is ordered properly
         Assert.assertTrue("the list of entries is not ordered properly initially", isOrdered(entries));
         // add entry
-        TimeSlot slot = new TimeSlot(LocalTime.of(18,0), LocalTime.of(18,15), "second afternoon coffee");
+        TimeSlot slot = new TimeSlot(LocalTime.of(18,0), 15, "second afternoon coffee");
         Assert.assertTrue("the entry should have been added properly", this.calendar.addEntry(slot));
         entries = this.calendar.getEntries();
         Assert.assertEquals("there should be now 16 entries", initialSize+1, entries.size());
@@ -101,7 +101,7 @@ public class CalendarTest {
         Optional<TimeSlot> perhapsSlot = this.calendar.findAvailable(LocalTime.of(8, 0, 0));
         Assert.assertTrue("there should be available free time from 8 o'clock onwards", perhapsSlot.isPresent());
         TimeSlot slot = perhapsSlot.get();
-        TimeSlot expected = new TimeSlot(LocalTime.of(8,15), LocalTime.of(8, 20));
+        TimeSlot expected = new TimeSlot(LocalTime.of(8,15), 5);
         Assert.assertEquals("free time should be 8:15-8:20", expected, slot);
     }
 
@@ -110,7 +110,7 @@ public class CalendarTest {
         Optional<TimeSlot> perhapsSlot = this.calendar.findAvailable(LocalTime.of(12, 30, 0));
         Assert.assertTrue("there should be available free time precisely at 12:30", perhapsSlot.isPresent());
         TimeSlot slot = perhapsSlot.get();
-        TimeSlot expected = new TimeSlot(LocalTime.of(12,30), LocalTime.of(12, 45));
+        TimeSlot expected = new TimeSlot(LocalTime.of(12,30), 15);
         Assert.assertEquals("free time should be 12:30-12:45", expected, slot);
     }
 
@@ -122,13 +122,13 @@ public class CalendarTest {
 
     @Test
     public void testCheckingAvailability() {
-        Assert.assertFalse("8:55 to 9:00 should not be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(8,55), LocalTime.of(9,0))));
-        Assert.assertFalse("8:50 to 9:00 should not be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(8,50), LocalTime.of(9,0))));
-        Assert.assertFalse("8:55 to 9:10 should not be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(8,55), LocalTime.of(9,10))));
-        Assert.assertFalse("8:50 to 9:10 should not be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(8,50), LocalTime.of(9,10))));
-        Assert.assertTrue("9:00 to 9:30 should be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(9,0), LocalTime.of(9, 30))));
-        Assert.assertTrue("9:15 to 9:30 should be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(9,15), LocalTime.of(9, 30))));
-        Assert.assertTrue("9:00 to 9:20 should be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(9,0), LocalTime.of(9, 20))));
-        Assert.assertTrue("9:15 to 9:20 should be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(9,15), LocalTime.of(9, 20))));
+        Assert.assertFalse("8:55 to 9:00 should not be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(8,55), 5)));
+        Assert.assertFalse("8:50 to 9:00 should not be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(8,50), 10)));
+        Assert.assertFalse("8:55 to 9:10 should not be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(8,55), 15)));
+        Assert.assertFalse("8:50 to 9:10 should not be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(8,50), 20)));
+        Assert.assertTrue("9:00 to 9:30 should be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(9,0), 30)));
+        Assert.assertTrue("9:15 to 9:30 should be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(9,15), 15)));
+        Assert.assertTrue("9:00 to 9:20 should be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(9,0), 20)));
+        Assert.assertTrue("9:15 to 9:20 should be available", this.calendar.isAvailable(new TimeSlot(LocalTime.of(9,15), 5)));
     }
 }
