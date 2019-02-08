@@ -1,7 +1,7 @@
 package org.vaadin.hr.time;
 
 import java.time.LocalTime;
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -41,9 +41,9 @@ public interface Calendar {
     boolean isAvailable(TimeSlot entry);
 
     /**
-     * Returns a non-modifiable list of entries, starting by the earliest and ending with the latest.
-     * @return A list of entries.
+     * Returns a non-modifiable collection of {@link TimeSlot}s. The resulting {@link Collection} should be sorted, starting by the earliest and ending with the latest.
+     * @return A collection of sorted entries.
      */
-    List<TimeSlot> getEntries();
+    Collection<TimeSlot> getEntries();
 
 }

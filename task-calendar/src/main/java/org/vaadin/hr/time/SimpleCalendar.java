@@ -1,9 +1,8 @@
 package org.vaadin.hr.time;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -13,7 +12,10 @@ import java.util.Optional;
  */
 public final class SimpleCalendar implements Calendar {
 
-    private final List<TimeSlot> slots = new ArrayList<>();
+    /**
+     * Stores the entries.
+     */
+    private final Collection<TimeSlot> slots = null;
 
     /**
      * Creates the calendar from specified slots. All of them are added.
@@ -51,8 +53,8 @@ public final class SimpleCalendar implements Calendar {
     }
 
     @Override
-    public List<TimeSlot> getEntries() {
-        return Collections.unmodifiableList(this.slots);
+    public Collection<TimeSlot> getEntries() {
+        return Collections.unmodifiableCollection(this.slots);
     }
 
 }

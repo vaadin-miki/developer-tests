@@ -9,7 +9,7 @@ import org.vaadin.hr.time.provider.FileBasedCalendarProvider;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalTime;
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -56,9 +56,10 @@ public class CalendarTest {
      * @param entries Entries.
      * @return {@code false} when there is any entry that has an ending time that happens after the starting time of the next entry, otherwise {@code true}.
      */
-    private static boolean isOrdered(List<TimeSlot> entries) {
-        for(int index = 1; index < entries.size(); index++)
-            if(entries.get(index-1).getEndingTime().isAfter(entries.get(index).getStartingTime()))
+    private static boolean isOrdered(Collection<TimeSlot> entries) {
+        TimeSlot[] array = entries.toArray(new TimeSlot[0]);
+        for(int index = 1; index < array.length; index++)
+            if(array[index-1].getEndingTime().isAfter(array[index].getStartingTime()))
                 return false;
         return true;
     }
@@ -66,7 +67,7 @@ public class CalendarTest {
     @Test
     public void testSortedAddingAndRemoving() {
         // initial entries
-        List<TimeSlot> entries = this.calendar.getEntries();
+        Collection<TimeSlot> entries = this.calendar.getEntries();
         int initialSize = entries.size();
         Assert.assertEquals("not all entries were read", 15, initialSize);
         // check whether the list is ordered properly
