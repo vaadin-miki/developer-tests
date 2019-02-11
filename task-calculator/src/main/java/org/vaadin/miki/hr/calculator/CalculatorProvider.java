@@ -17,7 +17,7 @@ class CalculatorProvider {
      */
     static Calculator getCalculator() {
         // TODO task-1 get rid of this exception and construct a proper calculator
-        throw new IllegalStateException("not implemented");
+        throw new IllegalStateException("providing calculators is not implemented");
     }
 
 }

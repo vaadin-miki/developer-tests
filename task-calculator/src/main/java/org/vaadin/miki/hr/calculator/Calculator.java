@@ -2,6 +2,9 @@ package org.vaadin.miki.hr.calculator;
 
 /**
  * Calculator interface. Instances should be stateless.
+ *
+ * Do not modify this file.
+ *
  * @author miki
  * @since 2019-01-30
  */
