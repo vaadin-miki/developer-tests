@@ -20,7 +20,8 @@ public final class FileBasedCalendarProvider implements CalendarProvider {
      */
     public void read(File file) {
         // todo task-1 implement this to read contents from the provided file, according to the documentation
-        throw new UnsupportedOperationException("not implemented");
+        // see: Calendar.addEntry
+        throw new UnsupportedOperationException("creating calendar from file is not implemented");
     }
 
     @Override

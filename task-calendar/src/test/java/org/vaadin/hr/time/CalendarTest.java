@@ -9,8 +9,11 @@ import org.vaadin.hr.time.provider.FileBasedCalendarProvider;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * All the calendar tests.
@@ -57,32 +60,30 @@ public class CalendarTest {
      * @return {@code false} when there is any entry that has an ending time that happens after the starting time of the next entry, otherwise {@code true}.
      */
     private static boolean isOrdered(Collection<TimeSlot> entries) {
-        TimeSlot[] array = entries.toArray(new TimeSlot[0]);
-        for(int index = 1; index < array.length; index++)
-            if(array[index-1].getEndingTime().isAfter(array[index].getStartingTime()))
-                return false;
-        return true;
+        List<TimeSlot> sorted = entries.stream().sorted().collect(Collectors.toList());
+        List<TimeSlot> asIs = new ArrayList<>(entries);
+        return sorted.equals(asIs);
     }
 
     @Test
     public void testSortedAddingAndRemoving() {
         // initial entries
-        Collection<TimeSlot> entries = this.calendar.getEntries();
+        Collection<TimeSlot> entries = this.calendar.getSortedEntries();
         int initialSize = entries.size();
         Assert.assertEquals("not all entries were read", 15, initialSize);
         // check whether the list is ordered properly
         Assert.assertTrue("the list of entries is not ordered properly initially", isOrdered(entries));
         // add entry
         TimeSlot slot = new TimeSlot(LocalTime.of(18,0), 15, "second afternoon coffee");
-        Assert.assertTrue("the entry should have been added properly", this.calendar.addEntry(slot));
-        entries = this.calendar.getEntries();
+        Assert.assertEquals("the entry should have been added properly", 1, this.calendar.addEntry(slot));
+        entries = this.calendar.getSortedEntries();
         Assert.assertEquals("there should be now 16 entries", initialSize+1, entries.size());
         // and they should be ordered
         Assert.assertTrue("the list of entries is not ordered properly after adding", isOrdered(entries));
         // now removing the entry
         Optional<TimeSlot> perhapsSlot = this.calendar.removeEntryAt(LocalTime.of(18,0));
         Assert.assertTrue("there should be a proper entry at 18:00, it was just added", perhapsSlot.isPresent());
-        entries = this.calendar.getEntries();
+        entries = this.calendar.getSortedEntries();
         Assert.assertEquals("there should be now 15 entries again", initialSize, entries.size());
         // and they should be ordered
         Assert.assertTrue("the list of entries is not ordered properly after removing", isOrdered(entries));
@@ -98,7 +99,7 @@ public class CalendarTest {
 
     @Test
     public void testFindingAvailableSlotAfter() {
-        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailable(LocalTime.of(8, 0, 0));
+        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(8, 0, 0));
         Assert.assertTrue("there should be available free time from 8 o'clock onwards", perhapsSlot.isPresent());
         TimeSlot slot = perhapsSlot.get();
         TimeSlot expected = new TimeSlot(LocalTime.of(8,15), 5);
@@ -107,7 +108,7 @@ public class CalendarTest {
 
     @Test
     public void testFindingAvailableSlotAt() {
-        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailable(LocalTime.of(12, 30, 0));
+        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(12, 30, 0));
         Assert.assertTrue("there should be available free time precisely at 12:30", perhapsSlot.isPresent());
         TimeSlot slot = perhapsSlot.get();
         TimeSlot expected = new TimeSlot(LocalTime.of(12,30), 15);
@@ -116,7 +117,7 @@ public class CalendarTest {
 
     @Test
     public void testFindingNoAvailableSlot() {
-        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailable(LocalTime.of(23, 5, 0));
+        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(23, 5, 0));
         Assert.assertFalse("there should be no available free time precisely from 23:05", perhapsSlot.isPresent());
     }
 

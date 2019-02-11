@@ -10,11 +10,15 @@ import java.util.Optional;
  * It has a starting time (that belongs to the slot)
  * and ending time (that does not belong to the slot)
  * and a description (purely informative, no real meaning).
+ * It contains a number of useful methods, like {@link #getEndingTime()} and {@link #contains(LocalTime)}.
+ * It also is {@link Comparable}, ordered by the starting time.
+ *
  * Do not modify this file.
+ *
  * @author miki
  * @since 2019-02-05
  */
-public final class TimeSlot {
+public final class TimeSlot implements Comparable<TimeSlot> {
 
     private final LocalTime startingTime;
     private final LocalTime endingTime;
@@ -65,22 +69,51 @@ public final class TimeSlot {
         this(startingTime, ChronoUnit.MINUTES.between(startingTime, endingTime));
     }
 
+    /**
+     * Checks if this time slot contains specified time.
+     * @param time Time to check.
+     * @return {@code true} when the given time is before the ending time, and after or equal to the starting time.
+     */
+    public boolean contains(LocalTime time) {
+        return !time.isBefore(this.getStartingTime()) && time.isBefore(this.getEndingTime());
+    }
+
+    /**
+     * Returns the starting time of the time slot.
+     * @return Starting time. This time "belongs" to the time slot.
+     */
     public LocalTime getStartingTime() {
         return startingTime;
     }
 
+    /**
+     * Returns the ending time of the time slot.
+     * @return Ending time. This time does not "belong" to the time slot.
+     */
     public LocalTime getEndingTime() {
         return endingTime;
     }
 
+    /**
+     * Returns the duration of the time slot.
+     * @return Duration, in minutes. Will always be a positive number.
+     */
     public long getDuration() {
         return duration;
     }
 
+    /**
+     * Returns the description, if there is any.
+     * @return An optional description.
+     */
     public Optional<String> getDescription() {
         return Optional.ofNullable(description);
     }
 
+    /**
+     * Sets the description.
+     * @param description New description. Can be {@code null}.
+     */
     public void setDescription(String description) {
         this.description = description;
     }
@@ -99,5 +132,10 @@ public final class TimeSlot {
     public boolean equals(Object obj) {
         return obj instanceof TimeSlot && (this.getStartingTime().equals(((TimeSlot) obj).getStartingTime()))
             && this.getDuration() == ((TimeSlot) obj).getDuration();
+    }
+
+    @Override
+    public int compareTo(TimeSlot o) {
+        return this.getStartingTime().compareTo(o.getStartingTime());
     }
 }
