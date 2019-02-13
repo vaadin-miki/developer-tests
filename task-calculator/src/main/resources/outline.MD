@@ -23,3 +23,7 @@ Additional digits are `abcdef` for 10 to 15. The input should be case-insensitiv
 ## Step 4 (ending point)
 
 The calculator should support entering only one number, without the `operation` and the other `number`. If such input is encountered, it should just return the number.
+
+## Step 5 (discussion)
+
+What needs to be done to support expressions such as `2 + 3 * 4`?

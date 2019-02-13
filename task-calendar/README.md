@@ -18,6 +18,6 @@ Whenever you are unclear about what exactly is expected, **ask immediately**.
 
 ## General programming task
 
-Look at `FileBasedCalendarProvider.getCalendar()` and start from there. Once you are done with reading the file, head on to `SimpleCalendar` and finish the implementation so that all the tests pass.
+Look at `FileBasedCalendarProvider.readTimeSlotsFromFile` and start from there. Once you are done with reading the file, head on to `Calendar` and finish the implementation so that all the tests pass.
 
-You have approximately 45 minutes, although this is not a hard limit. Once all the tests pass, congratulations!
+You have approximately 60 minutes, although this is not a hard limit. Once all the tests pass, congratulations!

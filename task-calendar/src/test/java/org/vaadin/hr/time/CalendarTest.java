@@ -99,7 +99,7 @@ public class CalendarTest {
 
     @Test
     public void testFindingAvailableSlotAfter() {
-        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(8, 0, 0));
+        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(8, 0));
         Assert.assertTrue("there should be available free time from 8 o'clock onwards", perhapsSlot.isPresent());
         TimeSlot slot = perhapsSlot.get();
         TimeSlot expected = new TimeSlot(LocalTime.of(8,15), 5);
@@ -108,7 +108,7 @@ public class CalendarTest {
 
     @Test
     public void testFindingAvailableSlotAt() {
-        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(12, 30, 0));
+        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(12, 30));
         Assert.assertTrue("there should be available free time precisely at 12:30", perhapsSlot.isPresent());
         TimeSlot slot = perhapsSlot.get();
         TimeSlot expected = new TimeSlot(LocalTime.of(12,30), 15);
@@ -116,9 +116,18 @@ public class CalendarTest {
     }
 
     @Test
+    public void testFindingAvailableSlotAtFreeTime() {
+        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(5, 55));
+        Assert.assertTrue("there should be available free time from 5:55", perhapsSlot.isPresent());
+        TimeSlot slot = perhapsSlot.get();
+        TimeSlot expected = new TimeSlot(LocalTime.of(5, 55), LocalTime.of(7, 15));
+        Assert.assertEquals("free time should be 5:55-7:15", expected, slot);
+    }
+
+    @Test
     public void testFindingNoAvailableSlot() {
         // check availability
-        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(23, 5, 0));
+        Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(23, 5));
         Assert.assertTrue("there should be available free time at 23:55 to end of day", perhapsSlot.isPresent());
         TimeSlot slot = perhapsSlot.get();
         TimeSlot expected = new TimeSlot(LocalTime.of(23,55));

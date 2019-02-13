@@ -3,13 +3,13 @@
 This repository contains a few tasks to implement during a developer interview task.
 
 This project contains the following modules:
-* `task-data` - a general programming task with fixed requirements
-* `task-calendar` - another general programming task with fixed requirements
-* `task-calculator` - a general programming task with changing requirements 
-* `task-optimise` - a code optimisation task
-* `task-css` - a set of simple CSS tasks
+* `task-data` - a general programming task with fixed requirements (**easy**)
+* `task-calendar` - another general programming task with fixed requirements (**hard**)
+* `task-calculator` - a general programming task with changing requirements (**intermediate**)
+* `task-optimise` - a code optimisation task (**hard**)
+* `task-css` - a set of simple CSS tasks (**easy**)
 
-Each module is independent and should be run and compiled separately.
+Modules are independent and should be run and compiled separately.
 
 To get started, please open `README.md` in a module and follow the instructions.
 
