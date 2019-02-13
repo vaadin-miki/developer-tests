@@ -10,7 +10,8 @@ import java.util.Optional;
  * It has a starting time (that belongs to the slot)
  * and ending time (that does not belong to the slot)
  * and a description (purely informative, no real meaning).
- * It contains a number of useful methods, like {@link #getEndingTime()} and {@link #contains(LocalTime)}.
+ * It contains a number of useful methods, like {@link #getEndingTime()},
+ * {@link #contains(LocalTime)}, {@link #overlaps(TimeSlot)} or {@link #isUntilEndOfDay()}.
  * It also is {@link Comparable}, ordered by the starting time.
  *
  * Do not modify this file.
@@ -70,12 +71,37 @@ public final class TimeSlot implements Comparable<TimeSlot> {
     }
 
     /**
+     * Creates the time slot from given parameters, using {@link LocalTime#MIDNIGHT} as ending time.
+     * @param startingTime Starting time.
+     */
+    public TimeSlot(LocalTime startingTime) {
+        this(startingTime, 1+ChronoUnit.MINUTES.between(startingTime, LocalTime.MIDNIGHT.minus(1, ChronoUnit.MINUTES)));
+    }
+
+    /**
      * Checks if this time slot contains specified time.
      * @param time Time to check.
      * @return {@code true} when the given time is before the ending time, and after or equal to the starting time.
      */
     public boolean contains(LocalTime time) {
-        return !time.isBefore(this.getStartingTime()) && time.isBefore(this.getEndingTime());
+        return !time.isBefore(this.getStartingTime()) && (this.isUntilEndOfDay() || time.isBefore(this.getEndingTime()));
+    }
+
+    /**
+     * Checks if this time slot ends at {@link LocalTime#MIDNIGHT}.
+     * @return Whether or not the ending time is midnight.
+     */
+    public boolean isUntilEndOfDay() {
+        return this.getEndingTime().equals(LocalTime.MIDNIGHT);
+    }
+
+    /**
+     * Checks if this time slot overlaps with another slot. This operation is reflexive (if a overlaps b, then also b overlaps a).
+     * @param slot Slot to check against.
+     * @return Whether or not the given slot overlaps with this one.
+     */
+    public boolean overlaps(TimeSlot slot) {
+        return this.contains(slot.getStartingTime()) || slot.contains(this.getStartingTime());
     }
 
     /**

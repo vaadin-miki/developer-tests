@@ -117,8 +117,25 @@ public class CalendarTest {
 
     @Test
     public void testFindingNoAvailableSlot() {
+        // check availability
         Optional<TimeSlot> perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(23, 5, 0));
-        Assert.assertFalse("there should be no available free time precisely from 23:05", perhapsSlot.isPresent());
+        Assert.assertTrue("there should be available free time at 23:55 to end of day", perhapsSlot.isPresent());
+        TimeSlot slot = perhapsSlot.get();
+        TimeSlot expected = new TimeSlot(LocalTime.of(23,55));
+        Assert.assertEquals("free time at end of day should be 23:55-0:00", expected, slot);
+
+        // add time that was found, now there should be no free time
+        this.calendar.addEntry(slot);
+        perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(23,5));
+        Assert.assertFalse("now there should be no available free time from 23:05 until end of day", perhapsSlot.isPresent());
+        this.calendar.removeEntryAt(slot.getStartingTime());
+
+        // check again after removing that the time slot is still there
+        perhapsSlot = this.calendar.findAvailableEntryAtOrAfter(LocalTime.of(23, 5, 0));
+        Assert.assertTrue("there should again be available free time at 23:55 to end of day", perhapsSlot.isPresent());
+        slot = perhapsSlot.get();
+        expected = new TimeSlot(LocalTime.of(23,55));
+        Assert.assertEquals("free time at end of day should not change and be 23:55-0:00", expected, slot);
     }
 
     @Test
